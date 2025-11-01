@@ -78,12 +78,12 @@ export default function PlayerCard({ player, rank, onClick }: PlayerCardProps) {
       </div>
 
       {/* Region Badge */}
-      <div className="z-10">
+      <div className="z-10 min-w-[60px] flex justify-center">
         <RegionBadge region={player.region} />
       </div>
 
       {/* Tier Badge */}
-      <div className="z-10">
+      <div className="z-10 min-w-[60px] flex justify-center">
         <TierBadge tier={player.tier} />
       </div>
     </div>
