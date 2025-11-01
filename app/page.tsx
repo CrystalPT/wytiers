@@ -60,7 +60,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-bg-dark">
+    <div className="min-h-screen bg-bg-dark flex flex-col">
       {/* Navigation Bar */}
       <nav className="bg-bg border-b border-border-muted">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between max-w-7xl">
@@ -120,7 +120,7 @@ export default function Home() {
         </div>
       </nav>
 
-      <main className="container mx-auto px-4 py-8 max-w-5xl">
+      <main className="container mx-auto px-4 py-8 max-w-5xl flex-grow">
 
         {/* Loading State */}
         {loading && (
@@ -187,20 +187,20 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-bg border-t border-border-muted mt-auto">
+      <footer className="bg-bg border-t border-border-muted">
         <div className="container mx-auto px-4 py-6 max-w-7xl flex items-center justify-between">
           <div className="text-text-muted text-sm">
             © {new Date().getFullYear()} WYTiers. All rights reserved.
           </div>
           <div className="text-text-muted text-sm">
-            Made with 💜 by{' '}
+            Made by @crystalpt
             <a
               href="https://discord.gg/lopez"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:text-highlight transition-colors"
             >
-              lopez
+              
             </a>
           </div>
         </div>
