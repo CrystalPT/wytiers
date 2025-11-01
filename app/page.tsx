@@ -25,8 +25,8 @@ export default function Home() {
       const response = await fetch('/api/players');
       const data = await response.json();
       
-      if (data.success) {
-        const sorted = sortPlayersByTier(data.players);
+      if (data.success && data.players) {
+        const sorted = sortPlayersByTier(data.players as Player[]);
         setPlayers(sorted);
         setFilteredPlayers(sorted);
       }
