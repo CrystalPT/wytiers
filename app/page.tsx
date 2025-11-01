@@ -99,16 +99,38 @@ export default function Home() {
 
         {/* Player List */}
         {!loading && filteredPlayers.length > 0 && (
-          <div className="space-y-3">
-            {filteredPlayers.map((player, index) => (
-              <PlayerCard
-                key={player.id}
-                player={player}
-                rank={index + 1}
-                onClick={() => handlePlayerClick(player, index + 1)}
-              />
-            ))}
-          </div>
+          <>
+            {/* Column Headers */}
+            <div className="flex items-center gap-4 px-3 pb-3 mb-2 border-b border-border-muted">
+              <div className="min-w-[56px] text-center">
+                <span className="text-xs font-bold text-text-muted uppercase tracking-wider">#</span>
+              </div>
+              <div className="w-16">
+                {/* Avatar space */}
+              </div>
+              <div className="flex-1">
+                <span className="text-xs font-bold text-text-muted uppercase tracking-wider">Player</span>
+              </div>
+              <div className="min-w-[60px] text-center">
+                <span className="text-xs font-bold text-text-muted uppercase tracking-wider">Region</span>
+              </div>
+              <div className="min-w-[60px] text-center">
+                <span className="text-xs font-bold text-text-muted uppercase tracking-wider">Tiers</span>
+              </div>
+            </div>
+
+            {/* Player Cards */}
+            <div className="space-y-3">
+              {filteredPlayers.map((player, index) => (
+                <PlayerCard
+                  key={player.id}
+                  player={player}
+                  rank={index + 1}
+                  onClick={() => handlePlayerClick(player, index + 1)}
+                />
+              ))}
+            </div>
+          </>
         )}
 
         {/* Player Modal */}
