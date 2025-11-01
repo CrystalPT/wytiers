@@ -185,6 +185,26 @@ export default function Home() {
           />
         )}
       </main>
+
+      {/* Footer */}
+      <footer className="bg-bg border-t border-border-muted mt-auto">
+        <div className="container mx-auto px-4 py-6 max-w-7xl flex items-center justify-between">
+          <div className="text-text-muted text-sm">
+            © {new Date().getFullYear()} WYTiers. All rights reserved.
+          </div>
+          <div className="text-text-muted text-sm">
+            Made with 💜 by{' '}
+            <a
+              href="https://discord.gg/lopez"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:text-highlight transition-colors"
+            >
+              lopez
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
