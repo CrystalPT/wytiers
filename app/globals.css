@@ -1,26 +1,56 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Background Colors - OKLCH */
+  --bg-dark: oklch(0.1 0.055 305);
+  --bg: oklch(0.15 0.055 305);
+  --bg-light: oklch(0.2 0.055 305);
+  
+  /* Text Colors - OKLCH */
+  --text: oklch(0.96 0.1 305);
+  --text-muted: oklch(0.76 0.1 305);
+  
+  /* Border Colors - OKLCH */
+  --highlight: oklch(0.5 0.11 305);
+  --border: oklch(0.4 0.11 305);
+  --border-muted: oklch(0.3 0.11 305);
+  
+  /* Action Colors - OKLCH */
+  --primary: oklch(0.76 0.11 305);
+  --secondary: oklch(0.76 0.11 125);
+  
+  /* Alert Colors - OKLCH */
+  --danger: oklch(0.7 0.11 30);
+  --warning: oklch(0.7 0.11 100);
+  --success: oklch(0.7 0.11 160);
+  --info: oklch(0.7 0.11 260);
+  
+  /* Border Radius */
+  --radius-2xl: 3rem;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-bg-dark: var(--bg-dark);
+  --color-bg: var(--bg);
+  --color-bg-light: var(--bg-light);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-highlight: var(--highlight);
+  --color-border: var(--border);
+  --color-border-muted: var(--border-muted);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-danger: var(--danger);
+  --color-warning: var(--warning);
+  --color-success: var(--success);
+  --color-info: var(--info);
+  --radius-2xl: var(--radius-2xl);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--bg-dark);
+  color: var(--text);
   font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
 }
