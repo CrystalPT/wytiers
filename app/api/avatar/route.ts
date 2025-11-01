@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
     }
 
     // NameMC uses a direct URL format for avatars
-    const avatarUrl = `https://mc-heads.net/avatar/${uuid}/128`;
+    const avatarUrl = `https://render.crafty.gg/3d/bust/${uuid}`;
 
     return NextResponse.json({
       avatarUrl,

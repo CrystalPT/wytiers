@@ -1,0 +1,46 @@
+# WYTiers Deployment Guide
+
+## Push to GitHub
+
+After creating your GitHub repository at https://github.com/new, run:
+
+cd c:\Users\cryst\wytiers
+git remote add origin https://github.com/YOUR_USERNAME/wytiers.git
+git branch -M main
+git push -u origin main
+
+Replace YOUR_USERNAME with your actual GitHub username!
+
+## Deploy to Vercel (Recommended - NOT GitHub Pages!)
+
+1. Go to: https://vercel.com/signup
+2. Sign up with your GitHub account
+3. Click "Add New Project"
+4. Import your 'wytiers' repository
+5. Vercel will auto-detect Next.js settings
+6. Click "Deploy"
+7. Wait 2 minutes - Done!
+
+Your site will be live at: https://wytiers.vercel.app (or similar)
+
+## Why Not GitHub Pages?
+
+GitHub Pages only supports static sites. Your WYTiers app needs:
+- Server-side API routes (/api/players, /api/uuid, etc.)
+- Firebase Firestore connection
+- Next.js server-side rendering
+
+Vercel supports all of this for FREE!
+
+## After Deployment
+
+Your Firebase config in lib/firebase.ts is safe to commit - it's meant to be public.
+Just make sure your Firestore security rules are properly configured in Firebase Console.
+
+## Troubleshooting
+
+If you get build errors on Vercel:
+1. Check that all dependencies are in package.json
+2. Ensure Firebase credentials are correct
+3. Check the build logs on Vercel dashboard
+

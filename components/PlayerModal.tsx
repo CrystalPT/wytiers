@@ -32,7 +32,7 @@ export default function PlayerModal({ player, rank, isOpen, onClose }: PlayerMod
 
   if (!isOpen) return null;
 
-  const avatarUrl = `https://mc-heads.net/avatar/${player.uuid}/128`;
+  const avatarUrl = `https://render.crafty.gg/3d/bust/${player.uuid}`;
   const nameMCUrl = `https://namemc.com/profile/${player.username}`;
 
   return (
@@ -54,13 +54,19 @@ export default function PlayerModal({ player, rank, isOpen, onClose }: PlayerMod
 
         {/* Player Avatar */}
         <div className="flex flex-col items-center mb-6">
-          <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-primary mb-4">
+          <div className="relative w-40 h-40 flex items-center justify-center mb-4">
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 blur-xl" />
             <Image
               src={avatarUrl}
               alt={player.username}
-              fill
-              className="object-cover"
+              width={160}
+              height={160}
+              className="object-contain drop-shadow-2xl relative z-10"
               unoptimized
+              style={{
+                imageRendering: 'pixelated',
+                filter: 'drop-shadow(0 8px 24px rgba(0,0,0,0.5))'
+              }}
             />
           </div>
 
