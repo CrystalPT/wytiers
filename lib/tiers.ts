@@ -53,13 +53,30 @@ export function getTierColor(tier: string): string {
 
 // Get tier badge style
 export function getTierBadgeStyle(tier: string): { bg: string; text: string } {
-  const rank = getTierRank(tier);
-  
-  if (rank >= 9) return { bg: 'oklch(0.5 0.11 305)', text: '#ffffff' };
-  if (rank >= 7) return { bg: 'oklch(0.5 0.11 260)', text: '#ffffff' };
-  if (rank >= 5) return { bg: 'oklch(0.5 0.11 200)', text: '#ffffff' };
-  if (rank >= 3) return { bg: 'oklch(0.5 0.11 160)', text: '#ffffff' };
-  return { bg: 'oklch(0.6 0.11 100)', text: '#000000' };
+  switch (tier.toUpperCase()) {
+    case 'HT1':
+      return { bg: '#ffbb00', text: '#000000' };
+    case 'LT1':
+      return { bg: '#ffea30', text: '#000000' };
+    case 'HT2':
+      return { bg: '#000000', text: '#ffffff' };
+    case 'LT2':
+      return { bg: '#6d6d6d', text: '#ffffff' };
+    case 'HT3':
+      return { bg: '#ff8b00', text: '#000000' };
+    case 'LT3':
+      return { bg: '#773b00', text: '#ffffff' };
+    case 'HT4':
+      return { bg: '#009dff', text: '#ffffff' };
+    case 'LT4':
+      return { bg: '#32d3ff', text: '#000000' };
+    case 'HT5':
+      return { bg: '#56dcfd', text: '#000000' };
+    case 'LT5':
+      return { bg: '#81e0ff', text: '#000000' };
+    default:
+      return { bg: '#4b5563', text: '#ffffff' };
+  }
 }
 
 // Get region color
@@ -83,7 +100,7 @@ export function getRegionBadgeStyle(region: string): { bg: string; text: string 
       return { bg: '#dc2626', text: '#ffffff' };
     case 'EU':
       return { bg: '#16a34a', text: '#ffffff' };
-    case 'OCE':
+    case 'AS':
       return { bg: '#2563eb', text: '#ffffff' };
     default:
       return { bg: '#4b5563', text: '#ffffff' };
