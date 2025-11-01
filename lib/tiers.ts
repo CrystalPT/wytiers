@@ -97,9 +97,9 @@ export function getRegionColor(region: string): string {
 export function getRegionBadgeStyle(region: string): { bg: string; text: string } {
   switch (region.toUpperCase()) {
     case 'NA':
-      return { bg: '#dc2626', text: '#ffffff' };
+      return { bg: '#d95c6a', text: '#ffffff' };
     case 'EU':
-      return { bg: '#16a34a', text: '#ffffff' };
+      return { bg: '#89f19c', text: '#1c3e20' };
     case 'AS':
       return { bg: '#2563eb', text: '#ffffff' };
     default:

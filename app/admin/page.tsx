@@ -6,9 +6,13 @@ import { TIERS } from '@/lib/tiers';
 import TierBadge from '@/components/TierBadge';
 import RegionBadge from '@/components/RegionBadge';
 
-const REGIONS = ['NA', 'EU', 'OCE'];
+const REGIONS = ['NA', 'EU', 'AS'];
+const ADMIN_PASSCODE = 'MrSixSeven';
 
 export default function AdminPage() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [passcodeInput, setPasscodeInput] = useState('');
+  const [passcodeError, setPasscodeError] = useState('');
   const [players, setPlayers] = useState<Player[]>([]);
   const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
@@ -20,6 +24,17 @@ export default function AdminPage() {
   const [editingPlayer, setEditingPlayer] = useState<Player | null>(null);
   const [fetchingUUID, setFetchingUUID] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+
+  const handlePasscodeSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (passcodeInput === ADMIN_PASSCODE) {
+      setIsAuthenticated(true);
+      setPasscodeError('');
+    } else {
+      setPasscodeError('Incorrect passcode. Please try again.');
+      setPasscodeInput('');
+    }
+  };
 
   useEffect(() => {
     fetchPlayers();
@@ -159,6 +174,58 @@ export default function AdminPage() {
     setMessage({ type, text });
     setTimeout(() => setMessage(null), 5000);
   };
+
+  // Show login form if not authenticated
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-bg-dark flex items-center justify-center">
+        <div className="container mx-auto px-4 max-w-md">
+          <div className="bg-bg border-2 border-border rounded-2xl p-8">
+            <div className="text-center mb-8">
+              <h1 className="text-4xl font-bold text-text mb-2">Admin Panel</h1>
+              <p className="text-text-muted">Enter passcode to access</p>
+            </div>
+
+            <form onSubmit={handlePasscodeSubmit} className="space-y-6">
+              <div>
+                <label className="block text-text-muted text-sm mb-2">Passcode</label>
+                <input
+                  type="password"
+                  value={passcodeInput}
+                  onChange={(e) => setPasscodeInput(e.target.value)}
+                  className="w-full px-4 py-3 bg-bg-light border border-border rounded-lg text-text text-center text-lg tracking-wider focus:outline-none focus:border-primary transition-colors"
+                  placeholder="Enter passcode"
+                  autoFocus
+                />
+              </div>
+
+              {passcodeError && (
+                <div className="p-3 bg-danger/20 text-danger border border-danger/50 rounded-lg text-sm text-center">
+                  {passcodeError}
+                </div>
+              )}
+
+              <button
+                type="submit"
+                className="w-full px-6 py-3 bg-primary hover:bg-highlight text-white font-semibold rounded-lg transition-colors"
+              >
+                Unlock Admin Panel
+              </button>
+            </form>
+
+            <div className="mt-6 text-center">
+              <a
+                href="/"
+                className="text-text-muted hover:text-primary transition-colors text-sm"
+              >
+                ← Back to Tierlist
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-bg-dark">
