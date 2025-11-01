@@ -17,13 +17,13 @@ export default function SearchBar({ onSearch, placeholder = "Search players..." 
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto mb-8">
+    <div className="w-full">
       <input
         type="text"
         value={query}
         onChange={handleChange}
         placeholder={placeholder}
-        className="w-full px-6 py-4 bg-bg border-2 border-border rounded-lg text-text text-lg focus:outline-none focus:border-primary transition-colors"
+        className="w-full px-4 py-2 bg-bg-dark border border-border rounded-lg text-text text-sm focus:outline-none focus:border-primary transition-colors placeholder:text-text-muted"
       />
     </div>
   );
