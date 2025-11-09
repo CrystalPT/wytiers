@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "WYTiers - Minecraft Sword PVP Rankings",
-  description: "The official Minecraft Sword PVP tierlist and rankings",
+  description: "The official WYTiers Sword PVP tierlist",
   icons: {
     icon: '/sword.svg',
   },
@@ -27,10 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7875356554712566"
-     crossorigin="anonymous"></script>
-      </head>
+      
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
