@@ -479,7 +479,7 @@ export default function AdminPage() {
                       {/* Show gamemode tiers in compact grid */}
                       <div className="grid grid-cols-4 gap-1 mt-2">
                         {GAMEMODES.filter(gm => gm.key !== 'overall').map((gamemode) => {
-                          const tier = player[gamemode.key];
+                          const tier = player[gamemode.key] as string;
                           return (
                             <div key={gamemode.key} className="text-center">
                               <Image
