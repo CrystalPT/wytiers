@@ -18,16 +18,28 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { username, uuid, tier, region } = body;
+    const { username, uuid, region, sword, vanilla, uhc, pot, nethop, smp, axe, mace } = body;
 
-    if (!username || !uuid || !tier || !region) {
+    if (!username || !uuid || !region) {
       return NextResponse.json(
-        { error: 'Missing required fields', success: false },
+        { error: 'Username, UUID, and Region are required', success: false },
         { status: 400 }
       );
     }
 
-    const playerId = await addPlayer({ username, uuid, tier, region });
+    const playerId = await addPlayer({ 
+      username, 
+      uuid, 
+      region,
+      sword: sword || '',
+      vanilla: vanilla || '',
+      uhc: uhc || '',
+      pot: pot || '',
+      nethop: nethop || '',
+      smp: smp || '',
+      axe: axe || '',
+      mace: mace || '',
+    });
 
     if (!playerId) {
       return NextResponse.json(
@@ -49,4 +61,3 @@ export async function POST(request: NextRequest) {
     );
   }
 }
-

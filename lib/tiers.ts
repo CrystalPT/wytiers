@@ -16,9 +16,48 @@ const TIER_RANK: Record<Tier, number> = {
   'HT1': 10,
 };
 
+// Tier points system for overall ranking
+const TIER_POINTS: Record<Tier, number> = {
+  'HT1': 60,
+  'LT1': 45,
+  'HT2': 30,
+  'LT2': 20,
+  'HT3': 10,
+  'LT3': 6,
+  'HT4': 4,
+  'LT4': 3,
+  'HT5': 2,
+  'LT5': 1,
+};
+
 // Get the rank number for a tier
 export function getTierRank(tier: string): number {
   return TIER_RANK[tier as Tier] || 0;
+}
+
+// Get points for a tier
+export function getTierPoints(tier: string): number {
+  if (!tier) return 0;
+  return TIER_POINTS[tier.toUpperCase() as Tier] || 0;
+}
+
+// Get achievement title based on overall points
+export function getAchievementTitle(points: number): { title: string; icon: string } {
+  if (points >= 400) {
+    return { title: 'Combat Grandmaster', icon: '/combat_grandmaster.webp' };
+  } else if (points >= 250) {
+    return { title: 'Combat Master', icon: '/combat_master.webp' };
+  } else if (points >= 100) {
+    return { title: 'Combat Ace', icon: '/combat_ace.svg' };
+  } else if (points >= 50) {
+    return { title: 'Combat Specialist', icon: '/combat_specialist.svg' };
+  } else if (points >= 20) {
+    return { title: 'Combat Cadet', icon: '/combat_cadet.svg' };
+  } else if (points >= 10) {
+    return { title: 'Combat Novice', icon: '/combat_novice.svg' };
+  } else {
+    return { title: 'Rookie', icon: '/rookie.svg' };
+  }
 }
 
 // Sort players by tier (best to worst)
@@ -71,9 +110,9 @@ export function getTierBadgeStyle(tier: string): { bg: string; text: string } {
     case 'LT4':
       return { bg: '#32d3ff', text: '#000000' };
     case 'HT5':
-      return { bg: '#56dcfd', text: '#000000' };
+      return { bg: '#A0AFB0', text: '#000000' };
     case 'LT5':
-      return { bg: '#81e0ff', text: '#000000' };
+      return { bg: '#737C7D', text: '#000000' };
     default:
       return { bg: '#4b5563', text: '#ffffff' };
   }
@@ -105,5 +144,37 @@ export function getRegionBadgeStyle(region: string): { bg: string; text: string 
     default:
       return { bg: '#4b5563', text: '#ffffff' };
   }
+}
+
+// Sort players by overall points (best to worst)
+export function sortPlayersByOverall<T extends { overall: number; username: string }>(players: T[]): T[] {
+  return [...players].sort((a, b) => {
+    // First sort by overall points (higher first)
+    if (b.overall !== a.overall) {
+      return b.overall - a.overall;
+    }
+    // If points are equal, sort alphabetically by username
+    return a.username.localeCompare(b.username);
+  });
+}
+
+// Sort players by gamemode tier (best to worst)
+export function sortPlayersByGamemodeTier<T extends { username: string }>(
+  players: T[],
+  getTierFunc: (player: T) => string
+): T[] {
+  return [...players].sort((a, b) => {
+    const tierA = getTierFunc(a);
+    const tierB = getTierFunc(b);
+    const rankA = getTierRank(tierA);
+    const rankB = getTierRank(tierB);
+    
+    // First sort by tier rank (higher first)
+    if (rankB !== rankA) {
+      return rankB - rankA;
+    }
+    // If ranks are equal, sort alphabetically by username
+    return a.username.localeCompare(b.username);
+  });
 }
 

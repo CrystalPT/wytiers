@@ -5,10 +5,11 @@
   --bg-dark: oklch(0.1 0.055 305);
   --bg: oklch(0.15 0.055 305);
   --bg-light: oklch(0.2 0.055 305);
-  
+
   /* Text Colors - OKLCH */
   --text: oklch(0.96 0.1 305);
   --text-muted: oklch(0.76 0.1 305);
+  --text-region: oklch(0.59 0.1 305);
   
   /* Border Colors - OKLCH */
   --highlight: oklch(0.5 0.11 305);
@@ -35,6 +36,8 @@
   --color-bg-light: var(--bg-light);
   --color-text: var(--text);
   --color-text-muted: var(--text-muted);
+  --color-text-region: var(--text-region);
+  --color-text-bold: var(--text-bold);
   --color-highlight: var(--highlight);
   --color-border: var(--border);
   --color-border-muted: var(--border-muted);
@@ -53,4 +56,15 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
