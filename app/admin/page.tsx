@@ -12,6 +12,8 @@ const REGIONS = ['NA', 'EU', 'AS'];
 const ADMIN_PASSCODE = 'MrSixSeven';
 const TIER_OPTIONS = ['', ...TIERS]; // Empty string for unranked
 
+type FormDataGamemodeKey = 'sword' | 'vanilla' | 'uhc' | 'pot' | 'nethop' | 'smp' | 'axe' | 'mace';
+
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [passcodeInput, setPasscodeInput] = useState('');
@@ -369,8 +371,11 @@ export default function AdminPage() {
                         <span className="text-text text-sm font-medium">{gamemode.name}</span>
                       </div>
                       <select
-                        value={formData[gamemode.key] as string}
-                        onChange={(e) => setFormData({ ...formData, [gamemode.key]: e.target.value })}
+                        value={formData[gamemode.key as FormDataGamemodeKey]}
+                        onChange={(e) => {
+                          const key = gamemode.key as FormDataGamemodeKey;
+                          setFormData({ ...formData, [key]: e.target.value });
+                        }}
                         className="px-3 py-2 bg-bg-light border border-border rounded-lg text-text text-sm focus:outline-none focus:border-primary"
                       >
                         <option value="">Unranked</option>
